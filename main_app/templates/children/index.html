@@ -4,9 +4,17 @@
 
 <h1>Your munchkins</h1>
 
-{% for child in children %}
-  <a href="{% url 'detail' child.id %}">
+{% if children %}
 
-  </a>
+{% for child in children %}
+  <p>Child Name: {{child.name}}</p>
+  <a href="{% url 'detail' child.id %}">x</a>
+{% endfor %}
+{% else %}
+
+<p>No Child</p>
+
+{% endif%}
+ 
 
 {% endblock %}

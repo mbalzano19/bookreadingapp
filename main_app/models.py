@@ -11,16 +11,20 @@ AGE_GROUP = (
   ('F', '7-13 Years'),
 )
 
+
 # Create your models here.
 class Book(models.Model):
     title = models.CharField(max_length=100)
     author = models.CharField(max_length=100)
-    age_group = models.CharField(max_length=1)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    age_group = models.CharField(
+        max_length=1,
+        choices=AGE_GROUP,
+        default=AGE_GROUP[0][0])
+    # user = models.ForeignKey(User, on_delete=models.CASCADE)
 
 
     def __str__(self):
-        return self.name
+        return self.title
     
     def get_absolute_url(self):
         return reverse('books_detail', kwargs={'pk': self.id})
@@ -41,3 +45,6 @@ class Child(models.Model):
     
     def get_absolute_url(self):
         return reverse('detail', kwargs={'child_id': self.id})
+    
+    def __str__(self):
+        return f"{self.get_age_group_display()}"

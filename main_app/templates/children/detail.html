@@ -3,7 +3,8 @@
 {% block content %}
 
 <h1>Child Details</h1>
+
 <p>Name: {{ child.name }}</p>
-<p>Age: {{ child.age_group}}</p>
+<p>Age: {{ child.get_age_group_display }}</p>
 
 {% endblock %}
