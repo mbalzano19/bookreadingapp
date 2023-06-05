@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Your munchkins</h1>
+
+{% for child in children %}
+  <a href="{% url 'detail' child.id %}">
+
+  </a>
+
+{% endblock %}
