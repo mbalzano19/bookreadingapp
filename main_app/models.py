@@ -1,6 +1,7 @@
 from django.db import models
 from django.urls import reverse
 from django.contrib.auth.models import User
+from .data import data
 
 AGE_GROUP = (
   ('A', '0-3 Months'),
@@ -12,10 +13,16 @@ AGE_GROUP = (
 )
 
 
+data = data()
+print(data[0].get('name'))
+
+
 # Create your models here.
 class Book(models.Model):
-    title = models.CharField(max_length=100)
+    name = models.CharField(max_length=100)
     author = models.CharField(max_length=100)
+    image_url = models.CharField(max_length=300)
+    description = models.CharField(max_length=300)
     age_group = models.CharField(
         max_length=1,
         choices=AGE_GROUP,
@@ -38,7 +45,11 @@ class Child(models.Model):
         default=AGE_GROUP[0][0]
     )
     books = models.ManyToManyField(Book)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
+    class Meta:
+
+        AGE_GROUP
 
     def __str__(self):
         return self.name
@@ -48,3 +59,5 @@ class Child(models.Model):
     
     def __str__(self):
         return f"{self.get_age_group_display()}"
+    
+

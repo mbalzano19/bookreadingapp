@@ -9,7 +9,6 @@ urlpatterns = [
     path('children/create/', views.ChildCreate.as_view(), name='child_create'),
     path('children/<int:pk>/update/', views.ChildUpdate.as_view(), name='child_update'),
     path('children/<int:pk>/delete/', views.ChildDelete.as_view(), name='child_delete'),
-    
-    
+    path('accounts/singup', views.signup, name='signup'),
 
 ]
