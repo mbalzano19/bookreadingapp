@@ -2,15 +2,11 @@ from django.shortcuts import render, redirect
 from .models import Child
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, DetailView
-<<<<<<< HEAD
-from .form import ChildForm
-=======
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .data import data
->>>>>>> main
 
 
 # Create your views here.
@@ -21,6 +17,21 @@ def home(request):
 
 def about(request):
     return render(request, 'about.html')
+
+def books_index(request):
+
+    return render(request, 'books/index.html',{'books':data})
+
+def books_detail(request,book_title):
+    for book in data:
+        print(book)
+        print(book.get('title'))
+        print(book_title)
+        if(book.get('title')==book_title):
+            v=book
+    
+    return render(request, 'books/detail.html',{'book':v})
+
 
 @login_required
 def children_index(request):
@@ -54,9 +65,6 @@ class ChildUpdate(UpdateView):
 class ChildDelete(DeleteView):
     model = Child
     success_url = '/children'
-<<<<<<< HEAD
-    
-=======
 
 def signup(request):
     error_message = ''
@@ -71,4 +79,3 @@ def signup(request):
     form = UserCreationForm()
     context = { 'form': form, 'error_message': error_message}
     return render(request, 'registration/signup.html', context)
->>>>>>> main

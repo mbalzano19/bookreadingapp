@@ -77,12 +77,7 @@ WSGI_APPLICATION = 'bookreading.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'bookapp',
-        'USER': 'postgres',
-        'PASSWORD': 'habibpsql',
-        'HOST': 'localhost',
-        'PORT': 5000,
-        
+        'NAME': 'bookapp',    
     }
 }
 
