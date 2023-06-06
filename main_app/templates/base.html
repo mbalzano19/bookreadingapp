@@ -18,8 +18,9 @@
             {% if user.is_authenticated %}
               
                 <li><a href="{% url 'books_index' %}">View all books</a></li>
-
                 <li><a href="{% url 'child_create' %}">Add Child</a></li>
+
+            
                 <li><a href="{% url 'index' %}">View all children</a></li>
                 <li><a href="{% url 'logout' %}">Logout</a></li>
             {% else %}
@@ -39,3 +40,4 @@
   </footer>
 </body>
 </html>
+

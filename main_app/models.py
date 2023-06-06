@@ -1,7 +1,7 @@
 from django.db import models
 from django.urls import reverse
 from django.contrib.auth.models import User
-from .data import data
+
 
 AGE_GROUP = (
   ('A', '0-3 Months'),
@@ -11,10 +11,6 @@ AGE_GROUP = (
   ('E', '3-7 Years'),
   ('F', '7-13 Years'),
 )
-
-
-data = data()
-print(data[0].get('name'))
 
 
 # Create your models here.
@@ -27,7 +23,6 @@ class Book(models.Model):
         max_length=1,
         choices=AGE_GROUP,
         default=AGE_GROUP[0][0])
-    # user = models.ForeignKey(User, on_delete=models.CASCADE)
 
 
     def __str__(self):
@@ -39,11 +34,12 @@ class Book(models.Model):
 
 class Child(models.Model):
     name = models.CharField(max_length=100)
-    age_group = models.CharField(
-        max_length=1,
-        choices=AGE_GROUP,
-        default=AGE_GROUP[0][0]
-    )
+    # age_group = models.CharField(
+    #     max_length=1,
+    #     choices=AGE_GROUP,
+    #     default=AGE_GROUP[0][0]
+    # )
+    age_group = models.IntegerField()
     books = models.ManyToManyField(Book)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
@@ -60,4 +56,11 @@ class Child(models.Model):
     def __str__(self):
         return f"{self.get_age_group_display()}"
     
+# class Review(models.Model):
+#     review = models.CharField(max_length=500)
+#     book = models.ForeignKey(Book, on_delete=models.CASCADE)
+
+#     def __str__(self):
+#         return self
+
 
