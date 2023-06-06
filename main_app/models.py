@@ -19,10 +19,10 @@ print(data[0].get('name'))
 
 # Create your models here.
 class Book(models.Model):
-    name = models.CharField(max_length=100)
+    title = models.CharField(max_length=100)
     author = models.CharField(max_length=100)
-    image_url = models.CharField(max_length=300)
-    description = models.CharField(max_length=300)
+    image_url = models.CharField(max_length=300,default='Description')
+    description = models.CharField(max_length=300, default='Description')
     age_group = models.CharField(
         max_length=1,
         choices=AGE_GROUP,

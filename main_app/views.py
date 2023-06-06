@@ -18,6 +18,21 @@ def home(request):
 def about(request):
     return render(request, 'about.html')
 
+def books_index(request):
+
+    return render(request, 'books/index.html',{'books':data})
+
+def books_detail(request,book_title):
+    for book in data:
+        print(book)
+        print(book.get('title'))
+        print(book_title)
+        if(book.get('title')==book_title):
+            v=book
+    
+    return render(request, 'books/detail.html',{'book':v})
+
+
 @login_required
 def children_index(request):
     children = Child.objects.all()
@@ -28,8 +43,10 @@ def children_index(request):
 @login_required
 def children_detail(request, child_id):
     child = Child.objects.get(id=child_id)
+    childform = ChildForm()
     return render(request, 'children/detail.html', {
         'child': child,
+        'childform':childform
     })
 
 class ChildCreate(CreateView):
