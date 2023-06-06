@@ -38,7 +38,11 @@ class Child(models.Model):
         default=AGE_GROUP[0][0]
     )
     books = models.ManyToManyField(Book)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
+    class Meta:
+
+        AGE_GROUP
 
     def __str__(self):
         return self.name
@@ -48,3 +52,5 @@ class Child(models.Model):
     
     def __str__(self):
         return f"{self.get_age_group_display()}"
+    
+

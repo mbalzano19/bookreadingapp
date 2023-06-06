@@ -7,4 +7,9 @@
 <p>Name: {{ child.name }}</p>
 <p>Age: {{ child.get_age_group_display }}</p>
 
+<div class="card-action">
+    <a href="{% url 'child_update' child.id %}">Edit</a>
+    <a href="{% url 'child_delete' child.id %}">Delete</a>
+  </div>
+
 {% endblock %}

@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<form action="" method="POST">
+    {% csrf_token %}
+    <table>
+        {{ form.as_table }}
+    </table>
+    <!-- <select name="age_group" id="">
+        <option value="A">0-3 Months</option>
+        <option value="B">3-6 Months</option>
+        <option value="C">0-3 Months</option>
+        <option value="D">0-3 Months</option>
+        <option value="E">0-3 Months</option>
+        <option value="F">0-3 Months</option>
+    </select> -->
+    <input type="submit" value="Add child" class="btn">
+
+</form>
+
+{% endblock %}
