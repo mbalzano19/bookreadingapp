@@ -4,6 +4,8 @@
 
 <h1>Your munchkins</h1>
 
+
+
 {% if children %}
 
 {% for child in children %}
@@ -16,5 +18,10 @@
 
 {% endif%}
  
+<script>
+  const selectEl = document.getElementById('id_');
+  M.FormSelect.init(selectEl);
+</script>
+
 
 {% endblock %}

@@ -8,7 +8,7 @@
 
 {% for book in books %}
 
- <a href={% url 'books_detail' book.title %}>
+ <a href="{% url 'books_detail' book.id %}">
     <p>title:{{book.title}}</p>
     <p>author: {{book.author}}</p>
     <img src={{book.image_url}} alt=''>

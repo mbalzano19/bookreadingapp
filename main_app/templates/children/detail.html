@@ -5,11 +5,62 @@
 <h1>Child Details</h1>
 
 <p>Name: {{ child.name }}</p>
-<p>Age: {{ child.get_age_group_display }}</p>
+<p>Age: {{ child.age_group }}</p>
 
 <div class="card-action">
     <a href="{% url 'child_update' child.id %}">Edit</a>
     <a href="{% url 'child_delete' child.id %}">Delete</a>
   </div>
+
+  <div class="row">
+    <div class="col s6">
+      <h3>{{ child.name }}'s Books</h3>
+      {% if child.books.count %}
+        {% for book in child.books.all %}
+          <div class="card">
+            <div class="card-content">
+            </div>
+            <div class="card-action">
+                <div>{{ book.title}}</div>
+                <div>{{ book.author}}</div>
+                <div>{{ book.description}}</div>
+              <form action="{% url 'disassoc_book' child.id book.id %}" method="POST">
+                {% csrf_token %}
+                <button type="submit" class="btn">Remove</button>
+              </form>
+            </div>
+          </div>
+        {% endfor %}
+      {% else %}
+        <h5>No Books 😿</h5>
+      {% endif %}
+    </div>
+    <!-- Available toys will come after this line -->
+  </div>
+  <!-- Available toys will come after this line -->
+  <!-- New Markup Below -->
+  <div class="col s6">
+
+    <div class="col s6">
+        <h3>Available Books</h3>
+
+        {% if books.count %}
+          {% for book in books.all %}
+            <div class="card">
+              <div class="card-content">
+                {{book.title}}
+              </div>
+              <div class="card-action">
+                <form action="{% url 'assoc_book' child.id book.id %}" method="POST">
+                  {% csrf_token %}
+                  <button type="submit" class="btn">Add</button>
+                </form>
+              </div>
+            </div>
+          {% endfor %}
+        {% else %}
+          <h5>{{child.name}} Already Has Read All The Available Books</h5>
+        {% endif %}
+      </div>  
 
 {% endblock %}
